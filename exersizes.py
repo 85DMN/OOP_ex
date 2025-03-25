@@ -24,6 +24,41 @@ class Student:
                 lecturer.grades[course] = [grade]
         else:
             return "Ошибка"
+    
+    @classmethod
+    def format(other):
+        
+        if not isinstance(other, (Student)):
+            raise TypeError('Не попал')
+        else:
+            gh = []
+            for m in other:
+                gh.append(sum(m)/len(m))
+            return sum(gh)/len(gh)# if isinstance(sum(gh)/len(gh),float) else sum(gh)/len(gh)
+    
+    def __ge__(self, other):
+        if isinstance(other,Student):
+            return format(list(self.grades.values())) >= format(list(other.grades.values()))
+        else:
+            return NotImplemented
+    
+    def __le__(self, other):
+        if isinstance(other,Student):
+            return format(list(self.grades.values())) <= format(list(other.grades.values()))
+        else:
+            return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other,Student):
+            return format(list(self.grades.values())) != format(list(other.grades.values()))
+        else:
+            return NotImplemented
+    
+    def __qe__(self, other):
+        if isinstance(other,Student):
+            return format(list(self.grades.values())) == format(list(other.grades.values()))
+        else:
+            return NotImplemented
         
 class Mentor:
     def __init__(self, name, surname):
@@ -54,6 +89,42 @@ class Lecturer(Mentor):
             m += sum(gh)
             l += len(gh)
         return f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {m/l}'
+    
+    @classmethod
+    def format(other):
+        
+        if not isinstance(other, (Lecturer)):
+            raise TypeError('Не попал')
+        else:
+            gh = []
+            for m in other:
+                gh.append(sum(m)/len(m))
+            return sum(gh)/len(gh)# if isinstance(sum(gh)/len(gh),float) else sum(gh)/len(gh)
+    
+    def __ge__(self, other):
+        if isinstance(other, Lecturer):
+            return format(list(self.grades.values())) >= format(list(other.grades.values()))
+        else:
+            return NotImplemented
+    
+    def __le__(self, other):
+        if isinstance(other, Lecturer):
+            return format(list(self.grades.values())) <= format(list(other.grades.values()))
+        else:
+            return NotImplemented
+
+    def __ne__(self, other):
+        if isinstance(other, Lecturer):
+            return format(list(self.grades.values())) != format(list(other.grades.values()))
+        else:
+            return NotImplemented
+    
+    def __qe__(self, other):
+        if isinstance(other, Lecturer):
+            return format(list(self.grades.values())) == format(list(other.grades.values()))
+        else:
+            return NotImplemented
+
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
